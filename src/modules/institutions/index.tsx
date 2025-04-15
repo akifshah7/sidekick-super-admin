@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import Table from "./components/table.tsx";
+// import Table from "./components/table.tsx";
 import modalStore from "@/globalStore/modalStore.ts";
 import AddUsersModal from "./components/AddInstitutionModal.tsx";
-import { useQuery } from "@apollo/client";
-import { FETCH_ORG_USERS } from "@/graphql/queries/fetchOrgUsers.ts";
-import RemoveInstitutionModal from "./components/removeInstitutionModal.tsx"
+// import RemoveInstitutionModal from "./components/removeInstitutionModal.tsx";
 
 const Users: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"This Month" | "Last Month">(
@@ -14,19 +12,8 @@ const Users: React.FC = () => {
 
   const { openModal } = modalStore();
 
-  const {
-    data: usersData,
-    error: usersError,
-    loading: usersLoading,
-  } = useQuery(FETCH_ORG_USERS, {
-    fetchPolicy: "network-only",
-  });
-
   const baseTabStyles =
     "px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer";
-
-  if (usersLoading) return <p>Loading...</p>;
-  if (usersError) return <p>Error loading data!</p>;
 
   return (
     <div className="m-7">
@@ -40,10 +27,11 @@ const Users: React.FC = () => {
           >
             Add Institutions
           </button>
-          <button 
-          onClick={() => openModal(RemoveInstitutionModal)}
-          // onClick={() => openModal(AssignCredit)}
-          className="font-bold text-sm rounded-full px-4 py-2 text-white bg-[#F84848]">
+          <button
+            // onClick={() => openModal(RemoveInstitutionModal)}
+            // onClick={() => openModal(AssignCredit)}
+            className="font-bold text-sm rounded-full px-4 py-2 text-white bg-[#F84848]"
+          >
             Remove Institutions
           </button>
           {/* <button
@@ -116,7 +104,7 @@ const Users: React.FC = () => {
         </div>
       </div>
 
-      <Table users={usersData.user_organizations} />
+      {/* <Table users={usersData.user_organizations} /> */}
 
       <div className="flex justify-between items-center w-full mt-6">
         <div>Click on User to view their profile.</div>

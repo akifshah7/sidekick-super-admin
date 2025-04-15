@@ -32,7 +32,7 @@ type Props = {
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-3">
             <h1 className="text-2xl md:text-3xl font-bold">
-              {data.user_organizations[0].user.full_name}
+              {/* {data.user_organizations[0].user.full_name} */}
             </h1>
             <span className="h-3 w-3 rounded-full bg-[#18F27A]" />
           </div>
@@ -40,14 +40,14 @@ type Props = {
           <div className="flex gap-4 text-sm">
             <span className="text-blue-600 font-semibold">Employee ID</span>
             <span className="text-gray-700">
-              {data.user_organizations[0].employee_id}
+              {/* {data.user_organizations[0].employee_id} */}
             </span>
           </div>
 
           <div className="flex gap-4 text-sm">
             <span className="text-blue-600 font-semibold">Wallet Balance</span>
             <span className="text-gray-700">
-              {data.user_organizations[0].user.wallet?.balance ?? "NA"}
+              {/* {data.user_organizations[0].user.wallet?.balance ?? "NA"} */}
             </span>
           </div>
         </div>
