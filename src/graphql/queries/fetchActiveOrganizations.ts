@@ -6,6 +6,9 @@ export const FETCH_ACTIVE_ORGANIZATIONS = gql`
       name
       wallet {
         balance
+        wallet_transactions {
+          amount
+        }
       }
     }
   }

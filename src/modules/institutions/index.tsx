@@ -16,7 +16,7 @@ const Users: React.FC = () => {
     "px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer";
 
   return (
-    <div className="m-7">
+    <div className="">
       {/* Quick Actions Section */}
       <div className="max-h-fit overflow-auto gap-5">
         <h2 className="font-semibold text-lg">Quick Actions</h2>
@@ -45,7 +45,7 @@ const Users: React.FC = () => {
 
       {/* Active Users Section */}
       <div className="max-h-fit overflow-auto mt-7 mb-3">
-        <h2 className="font-semibold text-lg">Active Users</h2>
+        <h2 className="font-semibold text-lg">Active Institutions</h2>
 
         <div className="flex justify-between">
           {/* Month Tabs */}

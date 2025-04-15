@@ -10,14 +10,10 @@ const Navbar: React.FC = () => {
   // Determine the title based on the current route pathname
   const getTitle = () => {
     switch (location.pathname) {
-      case "/credits":
-        return "Credits";
-      case "/users":
-        return "Users";
-      case "/scooters":
-        return "Scooters";
-      case "/institution":
-        return "Institution";
+      case "/institutions":
+        return "Institutions";
+      case "/revenue":
+        return "Revenue";
       default:
         return "";
     }

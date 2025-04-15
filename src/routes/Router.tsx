@@ -4,6 +4,7 @@ import Login from "@/modules/auth/login.tsx";
 import DashboardLayout from "@/modules/home/layout";
 import HomePage from "@/modules/home";
 import Users from "@/modules/institutions";
+import Revenue from "@/modules/revenue";
 // import UserProfile from "@/modules/users/components/userProfile"
 
 const Router: React.FC = () => {
@@ -14,6 +15,7 @@ const Router: React.FC = () => {
       <Route path="/" element={<DashboardLayout />}>
         <Route index element={<HomePage />} />
         <Route path="institutions" element={<Users />} />
+        <Route path="revenue" element={<Revenue />} />
       </Route>
     </Routes>
   );

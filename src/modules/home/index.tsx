@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
 
         <div>
           <button className="font-semibold rounded-full px-5 py-2 bg-[#18f27a]">
-            Export
+            All Scooters
           </button>
         </div>
       </div>
