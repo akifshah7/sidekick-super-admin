@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+@theme {
+  --color-sidebar-primary: #2C2E49;
+  --color-card-background: #F5F9FF;
+  --color-btn-primary: #19F27A;
+  --color-btn-secondary: #F5F9FF;
+  --color-border-primary: #84A1CA;
+  --color-icon-primary: #296AEB;
+  --color-border-primary: #5C8EF0;
+  --color-tabs-primary: #72FFB1;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide spinner arrows in Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide spinner arrows in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+body {
+  margin: 0 !important;
+}
