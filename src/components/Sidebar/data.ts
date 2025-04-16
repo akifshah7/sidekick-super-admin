@@ -2,7 +2,7 @@
 import dashboardIcon from "@/assets/home.svg";
 import creditsIcon from "@/assets/credits.svg";
 import usersIcon from "@/assets/user.svg";
-// import scootersIcon from "@/assets/scooters.svg";
+import scootersIcon from "@/assets/scooters.svg";
 
 export const links = [
   {
@@ -23,6 +23,11 @@ export const links = [
   {
     title: "Scooters",
     route: "/scooters",
-    // icon: scootersIcon,
+    icon: scootersIcon,
+  },
+  {
+    title: "Revenue",
+    route: "/revenue",
+    icon: creditsIcon,
   },
 ];
