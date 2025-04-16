@@ -23,6 +23,6 @@ export const links = [
   {
     title: "Scooters",
     route: "/scooters",
-    icon: scootersIcon,
+    // icon: scootersIcon,
   },
 ];

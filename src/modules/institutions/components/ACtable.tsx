@@ -7,6 +7,7 @@ export type UsersData = {
   name: string;
   numberOfScooters: number;
   creditBalance : number;
+  user_id : string;
 
 };
 
