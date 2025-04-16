@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 // import Table from "./components/table.tsx";
 import modalStore from "@/globalStore/modalStore.ts";
 import AddUsersModal from "./components/AddInstitutionModal.tsx";
+import { useQuery } from "@apollo/client";
+import { FETCH_ACTIVE_ORGANIZATIONS_BY_MONTH } from "@/graphql/queries/fetchActiveOrganizationsByMonth.ts";
+import { getDatesForActiveTab } from "@/utils/tabsHelper.ts";
+import ActiveInstitutionsTable from "./components/ActiveInstitutionsTable.tsx";
 // import RemoveInstitutionModal from "./components/removeInstitutionModal.tsx";
 
 const Users: React.FC = () => {
@@ -10,10 +14,26 @@ const Users: React.FC = () => {
   );
   const [searchQuery, setSearchQuery] = useState("");
 
+  const dateVariables = useMemo(
+    () => getDatesForActiveTab(activeTab),
+    [activeTab]
+  );
+
+  const { data, error, loading } = useQuery(
+    FETCH_ACTIVE_ORGANIZATIONS_BY_MONTH,
+    {
+      variables: dateVariables,
+      fetchPolicy: "network-only",
+    }
+  );
+
   const { openModal } = modalStore();
 
   const baseTabStyles =
     "px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer";
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error loading data!</p>;
 
   return (
     <div className="">
@@ -104,7 +124,8 @@ const Users: React.FC = () => {
         </div>
       </div>
 
-      {/* <Table users={usersData.user_organizations} /> */}
+      <ActiveInstitutionsTable institutions={data.organizations} />
+
 
       <div className="flex justify-between items-center w-full mt-6">
         <div>Click on User to view their profile.</div>
