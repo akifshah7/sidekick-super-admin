@@ -54,6 +54,9 @@ const RideTable: React.FC<RideTableProps> = ({ rides }) => {
       data={rideData}
       columns={rideColumns}
       title="Today's Rides"
+
+      pageSize={10}
+
     />
   );
 };

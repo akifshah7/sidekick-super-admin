@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Table from "./components/table.tsx";
+import React, { useMemo, useState } from "react";
+// import Table from "./components/table.tsx";
 import modalStore from "@/globalStore/modalStore.ts";
 import AddUsersModal from "./components/AddInstitutionModal.tsx";
 import { useQuery } from "@apollo/client";
-import { FETCH_ORG_USERS } from "@/graphql/queries/fetchOrgUsers.ts";
-import RemoveInstitutionModal from "./components/removeInstitutionModal.tsx"
-import Navbar from "@/components/Navbar/index.tsx";
-import AssignCredit from "./components/assignCredit.tsx"
+import { FETCH_ACTIVE_ORGANIZATIONS_BY_MONTH } from "@/graphql/queries/fetchActiveOrganizationsByMonth.ts";
+import { getDatesForActiveTab } from "@/utils/tabsHelper.ts";
+import ActiveInstitutionsTable from "./components/ActiveInstitutionsTable.tsx";
+// import RemoveInstitutionModal from "./components/removeInstitutionModal.tsx";
 
 const Users: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"This Month" | "Last Month">(
@@ -14,25 +14,29 @@ const Users: React.FC = () => {
   );
   const [searchQuery, setSearchQuery] = useState("");
 
-  const { openModal } = modalStore();
+  const dateVariables = useMemo(
+    () => getDatesForActiveTab(activeTab),
+    [activeTab]
+  );
 
-  const {
-    data: usersData,
-    error: usersError,
-    loading: usersLoading,
-  } = useQuery(FETCH_ORG_USERS, {
-    fetchPolicy: "network-only",
-  });
+  const { data, error, loading } = useQuery(
+    FETCH_ACTIVE_ORGANIZATIONS_BY_MONTH,
+    {
+      variables: dateVariables,
+      fetchPolicy: "network-only",
+    }
+  );
+
+  const { openModal } = modalStore();
 
   const baseTabStyles =
     "px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer";
 
-  if (usersLoading) return <p>Loading...</p>;
-  if (usersError) return <p>Error loading data!</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error loading data!</p>;
 
   return (
-    <div className="m-7">
-      <Navbar/>
+    <div className="">
       {/* Quick Actions Section */}
       <div className="max-h-fit overflow-auto gap-5">
         <h2 className="font-semibold text-lg">Quick Actions</h2>
@@ -43,10 +47,11 @@ const Users: React.FC = () => {
           >
             Add Institutions
           </button>
-          <button 
-          onClick={() => openModal(RemoveInstitutionModal)}
-          // onClick={() => openModal(AssignCredit)}
-          className="font-bold text-sm rounded-full px-4 py-2 text-white bg-[#F84848]">
+          <button
+            // onClick={() => openModal(RemoveInstitutionModal)}
+            // onClick={() => openModal(AssignCredit)}
+            className="font-bold text-sm rounded-full px-4 py-2 text-white bg-[#F84848]"
+          >
             Remove Institutions
           </button>
           {/* <button
@@ -60,7 +65,7 @@ const Users: React.FC = () => {
 
       {/* Active Users Section */}
       <div className="max-h-fit overflow-auto mt-7 mb-3">
-        <h2 className="font-semibold text-lg">Active Users</h2>
+        <h2 className="font-semibold text-lg">Active Institutions</h2>
 
         <div className="flex justify-between">
           {/* Month Tabs */}
@@ -119,7 +124,8 @@ const Users: React.FC = () => {
         </div>
       </div>
 
-      <Table users={usersData.user_organizations} />
+      <ActiveInstitutionsTable institutions={data.organizations} />
+
 
       <div className="flex justify-between items-center w-full mt-6">
         <div>Click on User to view their profile.</div>

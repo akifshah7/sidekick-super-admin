@@ -1,9 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 import Login from "@/modules/auth/login.tsx";
-import Institutions from "@/modules/institutions/index.tsx"
-// import DashboardLayout from "@/modules/home/layout";
-
+import DashboardLayout from "@/modules/home/layout";
+import HomePage from "@/modules/home";
+import Users from "@/modules/institutions";
+import Revenue from "@/modules/revenue";
 // import UserProfile from "@/modules/users/components/userProfile"
 
 const Router: React.FC = () => {
@@ -11,13 +12,10 @@ const Router: React.FC = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       {/* <Route path="/" element={<UserProfile />}> */}
-      <Route path="institution" element={<Institutions />} />
-      <Route path="/" element={<Login />}>
-      
-        {/* <Route index element={<HomePage />} />
-        <Route path="credits" element={<Credits />} />
-        <Route path="users" element={<Users />} />
-        <Route path="scooters" element={<Scooters />} /> */}
+      <Route path="/" element={<DashboardLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="institutions" element={<Users />} />
+        <Route path="revenue" element={<Revenue />} />
       </Route>
     </Routes>
   );

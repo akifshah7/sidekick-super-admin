@@ -2,7 +2,7 @@
 import dashboardIcon from "@/assets/home.svg";
 import creditsIcon from "@/assets/credits.svg";
 import usersIcon from "@/assets/user.svg";
-import scootersIcon from "@/assets/scooters.svg";
+// import scootersIcon from "@/assets/scooters.svg";
 
 export const links = [
   {
