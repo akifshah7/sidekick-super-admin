@@ -19,7 +19,7 @@ import Table1 from "./components/table1.tsx";
 import Table2 from "./components/table2.tsx";
 
 
-const Credits: React.FC = () => {
+const Revenue: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"This Month" | "Last Month">("This Month");
   const { openModal } = ModalStore();
 
@@ -149,4 +149,4 @@ const Credits: React.FC = () => {
   );
 };
 
-export default Credits;
+export default Revenue;
