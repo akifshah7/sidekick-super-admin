@@ -11,9 +11,6 @@ export const FETCH_RIDES = gql(`
       end_time
       user {
         full_name
-        first_name
-        middle_name
-        last_name
       }
     }
   }
