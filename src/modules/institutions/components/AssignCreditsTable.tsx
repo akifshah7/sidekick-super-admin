@@ -1,27 +1,26 @@
+// UsersTable.tsx
 import React from "react";
 import Table from "@/components/Table";
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
 
-export type RemoveInstitutionsData = {
+type Data = {
   name: string;
-  number_of_scooters: number;
   org_id: string;
+  number_of_scooters: number;
+  balance: number;
 };
 
-interface RemoveInstitutionsTableProps {
-  institutions: RemoveInstitutionsData[];
-  selectedInstitutionIds: string[];
-  toggleSelection: (institutionId: string) => void;
+interface TableProps {
+  users: Data[];
+  selectedUserIds: string[];
+  toggleSelection: (userId: string) => void;
 }
 
-const RemoveInstitutionsTable: React.FC<RemoveInstitutionsTableProps> = ({
-  institutions,
-  selectedInstitutionIds,
-  toggleSelection,
-}) => {
-  const columnHelper = createColumnHelper<RemoveInstitutionsData>();
+const UsersTable: React.FC<TableProps> = ({ users, selectedUserIds, toggleSelection }) => {
+  const columnHelper = createColumnHelper<Data>();
 
-  const columns: ColumnDef<RemoveInstitutionsData, any>[] = [
+  // Define columns for user data. We use a "display" column for checkboxes.
+  const columns: ColumnDef<Data, any>[] = [
     columnHelper.accessor("name", {
       header: "Name",
       cell: (info) => info.getValue(),
@@ -30,6 +29,10 @@ const RemoveInstitutionsTable: React.FC<RemoveInstitutionsTableProps> = ({
       header: "Number of Scooters",
       cell: (info) => info.getValue(),
     }),
+    columnHelper.accessor("balance", {
+        header: "Credit Balance",
+        cell: (info) => info.getValue(),
+      }),
     columnHelper.display({
       id: "select",
       header: () => (
@@ -38,8 +41,8 @@ const RemoveInstitutionsTable: React.FC<RemoveInstitutionsTableProps> = ({
         </div>
       ),
       cell: (info) => {
-        const institutionId = info.row.original.org_id;
-        const isChecked = selectedInstitutionIds.includes(institutionId);
+        const userId = info.row.original.org_id;
+        const isChecked = selectedUserIds.includes(userId);
         return (
           <div className="flex items-center justify-center">
             <label className="flex items-center cursor-pointer">
@@ -47,7 +50,7 @@ const RemoveInstitutionsTable: React.FC<RemoveInstitutionsTableProps> = ({
                 type="checkbox"
                 className="w-4 h-4 text-blue-600 border-gray-300 rounded"
                 checked={isChecked}
-                onChange={() => toggleSelection(institutionId)}
+                onChange={() => toggleSelection(userId)}
               />
             </label>
           </div>
@@ -56,7 +59,7 @@ const RemoveInstitutionsTable: React.FC<RemoveInstitutionsTableProps> = ({
     }),
   ];
 
-  return <Table<RemoveInstitutionsData> data={institutions} columns={columns} />;
+  return <Table<Data> data={users} columns={columns} />;
 };
 
-export default RemoveInstitutionsTable;
+export default UsersTable;

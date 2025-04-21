@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from "react";
 // import Table from "./components/table.tsx";
 import modalStore from "@/globalStore/modalStore.ts";
-import AddUsersModal from "./components/AddInstitutionModal.tsx";
 import { useQuery } from "@apollo/client";
 import { FETCH_ACTIVE_ORGANIZATIONS_BY_MONTH } from "@/graphql/queries/fetchActiveOrganizationsByMonth.ts";
 import { getDatesForActiveTab } from "@/utils/tabsHelper.ts";
 import ActiveInstitutionsTable from "./components/ActiveInstitutionsTable.tsx";
+import RemoveInstitutionModal from "./components/removeInstitutionModal.tsx";
 // import RemoveInstitutionModal from "./components/removeInstitutionModal.tsx";
 
 const Users: React.FC = () => {
@@ -42,13 +42,12 @@ const Users: React.FC = () => {
         <h2 className="font-semibold text-lg">Quick Actions</h2>
         <div className="mt-3 flex gap-x-2">
           <button
-            onClick={() => openModal(AddUsersModal)}
             className="font-bold text-sm rounded-full px-4 py-2 bg-[#18f27a]"
           >
             Add Institutions
           </button>
           <button
-            // onClick={() => openModal(RemoveInstitutionModal)}
+            onClick={() => openModal(RemoveInstitutionModal)}
             // onClick={() => openModal(AssignCredit)}
             className="font-bold text-sm rounded-full px-4 py-2 text-white bg-[#F84848]"
           >
@@ -125,7 +124,6 @@ const Users: React.FC = () => {
       </div>
 
       <ActiveInstitutionsTable institutions={data.organizations} />
-
 
       <div className="flex justify-between items-center w-full mt-6">
         <div>Click on User to view their profile.</div>

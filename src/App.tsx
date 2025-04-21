@@ -7,7 +7,7 @@ import UnProtectedRoutes from "./routes/UnprotectedRoutes";
 import { useAuth } from "./modules/auth/AuthContext";
 
 function App() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
 
   const {
     ModalComponent,
@@ -26,6 +26,8 @@ function App() {
     }
   }, [modalTransitionCallback, clearModalCallback]);
 
+  if (loading) return <div>Loading…</div>;
+  
   return (
     <>
       <BrowserRouter>

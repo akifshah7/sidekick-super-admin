@@ -1,26 +1,13 @@
-
-
-// import React from 'react'
-
-// const Revenue: React.FC = () => {
-//   return (
-//     <div>Revenue</div>
-//   )
-// }
-
-// export default Revenue
-
-import React, { useState} from "react";
+import React, { useState } from "react";
 import ModalStore from "@/globalStore/modalStore";
-// import AddCreditsModal from "./components/AddCreditsModal";
-// import TransactionTable from "./components/TransactionHistoryTable";
 import AssignCreditsModal from "./components/AssignCreditModal";
 import Table1 from "./components/table1.tsx";
 import Table2 from "./components/table2.tsx";
 
-
 const Revenue: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<"This Month" | "Last Month">("This Month");
+  const [activeTab, setActiveTab] = useState<"This Month" | "Last Month">(
+    "This Month"
+  );
   const { openModal } = ModalStore();
 
   // const {
@@ -50,9 +37,13 @@ const Revenue: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-y-4">
-      <div className='gap-y-4 bg-card-background w-full px-2 py-4 flex flex-col rounded-md h-40 shadow-sm justify-center items-center'>
-        <h2 className='font-bold text-xl leading-[100%] tracking-[0%] font-plus-jakart'>Revenue this Month</h2>
-        <h1 className='font-[Plus Jakarta Sans] font-bold text-[34px] leading-[100%] tracking-[0%]'>XXXX</h1>
+      <div className="gap-y-4 bg-card-background w-full px-2 py-4 flex flex-col rounded-md h-40 shadow-sm justify-center items-center">
+        <h2 className="font-bold text-xl leading-[100%] tracking-[0%] font-plus-jakart">
+          Revenue this Month
+        </h2>
+        <h1 className="font-[Plus Jakarta Sans] font-bold text-[34px] leading-[100%] tracking-[0%]">
+          XXXX
+        </h1>
       </div>
       <div className="flex justify-end gap-x-2">
         {/* <button
@@ -74,20 +65,22 @@ const Revenue: React.FC = () => {
           {/* This Month Tab */}
           <button
             onClick={() => setActiveTab("This Month")}
-            className={`px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer ${activeTab === "This Month"
-              ? "bg-tabs-primary text-black"
-              : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-              }`}
+            className={`px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer ${
+              activeTab === "This Month"
+                ? "bg-tabs-primary text-black"
+                : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+            }`}
           >
             This Month
           </button>
           {/* Last Month Tab */}
           <button
             onClick={() => setActiveTab("Last Month")}
-            className={`px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer ${activeTab === "Last Month"
-              ? "bg-tabs-primary text-black"
-              : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-              }`}
+            className={`px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer ${
+              activeTab === "Last Month"
+                ? "bg-tabs-primary text-black"
+                : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+            }`}
           >
             Last Month
           </button>
@@ -110,20 +103,22 @@ const Revenue: React.FC = () => {
           {/* This Month Tab */}
           <button
             onClick={() => setActiveTab("This Month")}
-            className={`px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer ${activeTab === "This Month"
-              ? "bg-tabs-primary text-black"
-              : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-              }`}
+            className={`px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer ${
+              activeTab === "This Month"
+                ? "bg-tabs-primary text-black"
+                : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+            }`}
           >
             This Month
           </button>
           {/* Last Month Tab */}
           <button
             onClick={() => setActiveTab("Last Month")}
-            className={`px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer ${activeTab === "Last Month"
-              ? "bg-tabs-primary text-black"
-              : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-              }`}
+            className={`px-4 py-0.5 rounded-lg transition-colors duration-200 cursor-pointer ${
+              activeTab === "Last Month"
+                ? "bg-tabs-primary text-black"
+                : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+            }`}
           >
             Last Month
           </button>
@@ -133,9 +128,6 @@ const Revenue: React.FC = () => {
           {/* <TransactionTable transactions={transactionData.wallet_transactions} /> */}
           <Table2 />
         </div>
-
-
-
 
         <div className="flex w-full justify-end mt-2">
           <button className="bg-btn-primary px-4 py-1.5 text-sm font-medium rounded-full">

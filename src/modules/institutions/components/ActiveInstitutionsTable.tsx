@@ -1,14 +1,19 @@
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import React from "react";
 import Table from "@/components/Table";
+import { useLazyQuery } from "@apollo/client";
+import { FETCH_ORGANIZATION_BY_ORG_ID } from "@/graphql/queries/fetchOrganizationByOrgId";
+import modalStore from "@/globalStore/modalStore";
+import InstitutionProfileModal from "./InstitutionProfileModal";
 
 type Data = {
   s_no: number;
   name: string;
-  number_of_scooters: number;
+  number_of_scooters: number | string;
   credit_balance: number;
   last_requested_servicing: string;
-  credits_used: number;
+  credits_used: number | string;
+  org_id: string;
 };
 
 const columnHelper = createColumnHelper<Data>();
@@ -44,10 +49,39 @@ interface Props {
   institutions: any[];
 }
 const ActiveInstitutionsTable: React.FC<Props> = ({ institutions }) => {
+  const { openModal } = modalStore();
+
+  const activeInstitutions: Data[] = institutions.map((inst, index) => ({
+    s_no: index + 1,
+    name: inst.name,
+    number_of_scooters: "NA",
+    credit_balance: inst.wallet?.balance ?? "NA",
+    last_requested_servicing: "NA",
+    credits_used: "NA",
+    org_id: inst.id,
+  }));
+
+  const [fetchOrganizationByOrgId] = useLazyQuery(FETCH_ORGANIZATION_BY_ORG_ID, {
+    fetchPolicy: "network-only",
+    onCompleted: (data) => {
+      openModal(() => <InstitutionProfileModal data={data} />);
+    },
+    onError: (err) => {
+      console.error("Error fetching organization data:", err);
+    },
+  });
+
+  const handleRowClick = (rowData: Data) => {
+    if (rowData.org_id) {
+      fetchOrganizationByOrgId({ variables: { orgId: rowData.org_id } });
+    }
+  };
+
   return (
     <Table<Data>
-      data={institutions}
+      data={activeInstitutions}
       columns={institutionColumns}
+      onRowClick={handleRowClick}
     />
   );
 };
