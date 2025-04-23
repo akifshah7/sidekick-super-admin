@@ -31,8 +31,7 @@ const HomePage: React.FC = () => {
           <OrganizationTable organizations={orgData?.organizations || []} />
         </div>
       </div>
-      <div className="flex justify-between items-center w-full mt-4">
-        <div>Click on User to view their profile.</div>
+      <div className="flex justify-end items-center w-full mt-4">
 
         <div>
           <button className="font-semibold rounded-full px-5 py-2 bg-[#18f27a]">
