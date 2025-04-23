@@ -14,6 +14,13 @@ export const FETCH_ACTIVE_ORGANIZATIONS_BY_MONTH = gql`
           amount
         }
       }
+      scooters{
+        rides {
+          total_cost
+        }
+        id
+        registration_number
+      }
     }
   }
 `;
