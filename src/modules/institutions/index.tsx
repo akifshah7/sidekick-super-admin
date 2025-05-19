@@ -123,7 +123,7 @@ const Users: React.FC = () => {
         </div>
       </div>
 
-      <ActiveInstitutionsTable institutions={data.organizations} />
+      <ActiveInstitutionsTable institutions={data.organizationsCollection.edges} />
 
       <div className="flex justify-between items-center w-full mt-6">
         <div>Click on User to view their profile.</div>
