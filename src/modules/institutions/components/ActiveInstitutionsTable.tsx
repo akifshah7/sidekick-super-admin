@@ -53,7 +53,7 @@ const ActiveInstitutionsTable: React.FC<Props> = ({ institutions }) => {
 
   const activeInstitutions: Data[] = institutions.map((inst, index) => ({
     s_no: index + 1,
-    name: inst.node.name,
+    name: inst.name,
     number_of_scooters: "NA",
     credit_balance: inst.wallet?.balance ?? "NA",
     last_requested_servicing: "NA",

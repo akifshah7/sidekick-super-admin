@@ -134,7 +134,7 @@ const Revenue: React.FC = () => {
           ))}
         </div>
         <div className="w-full mt-2">
-          <Table1 data={orgData.organizationsCollection.edges} />
+          <Table1 data={orgData} />
         </div>
         <div className="flex w-full justify-end mt-2">
           <button className="bg-btn-primary px-4 py-1.5 text-sm font-medium rounded-full">
@@ -164,7 +164,7 @@ const Revenue: React.FC = () => {
           ))}
         </div>
         <div className="w-full mt-2">
-          <Table2 transactions={transactionsData.wallet_transactionsCollection.edges}  />
+          <Table2 transactions={transactionsData.wallet_transactions}  />
         </div>
         <div className="flex w-full justify-end mt-2">
           <button className="bg-btn-primary px-4 py-1.5 text-sm font-medium rounded-full">

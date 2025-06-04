@@ -42,11 +42,10 @@ interface Props {
 }
 
 const RevenueTable: React.FC<Props> = ({ data }) => {
-  console.log(data);
-  const revenueData: Data[] = data?.map((org: any, index: number) => ({
+  const revenueData: Data[] = data?.organizations?.map((org: any, index: number) => ({
     s_no: index + 1,
-    institution: org.node.name,
-    number_of_scooters: org.scooters?.length ?? "-",
+    institution: org.name,
+    number_of_scooters: org.scooters?.length,
     current_balance: org.wallet?.balance ?? "-",
     total_revenue: calculateRevenueSum(data)
   }));

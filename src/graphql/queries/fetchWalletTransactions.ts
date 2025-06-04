@@ -2,24 +2,16 @@ import { gql } from "@apollo/client";
 
 export const FETCH_WALLET_TRANSACTIONS = gql`
   query fetchWalletTransactions {
-    wallet_transactionsCollection(first: 50) {
-      edges {
-        node {
-          transaction_id
-          amount
-          created_at
-          wallets {
-            balance
-            organizations {
-              name
-            }
-          }
+    wallet_transactions {
+      transaction_id
+      amount
+      wallet {
+        balance
+        organization {
+          name
         }
       }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
+      created_at
     }
   }
 `;
