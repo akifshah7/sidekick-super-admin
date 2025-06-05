@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import { FETCH_ACTIVE_ORGANIZATIONS_BY_MONTH } from "@/graphql/queries/fetchActiveOrganizationsByMonth.ts";
 import { getDatesForActiveTab } from "@/utils/tabsHelper.ts";
 import ActiveInstitutionsTable from "./components/ActiveInstitutionsTable.tsx";
-import RemoveInstitutionModal from "./components/removeInstitutionModal.tsx";
+import RemoveInstitutionModal from "./components/RemoveInstitutionModal.tsx";
 // import RemoveInstitutionModal from "./components/removeInstitutionModal.tsx";
 
 const Users: React.FC = () => {

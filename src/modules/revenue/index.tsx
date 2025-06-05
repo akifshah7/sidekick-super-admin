@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ModalStore from "@/globalStore/modalStore";
 import AssignCreditsModal from "@/modules/institutions/components/AssignCreditsModal.tsx";
 import Table1 from "./components/table1.tsx";
@@ -9,6 +9,7 @@ import { getDatesForActiveTab } from "@/utils/tabsHelper.ts";
 import { calculateRevenueSum } from "@/utils/revenue.ts";
 import { FETCH_ACTIVE_ORGANIZATIONS_BY_MONTH } from "@/graphql/queries/fetchActiveOrganizationsByMonth.ts";
 import { FETCH_WALLET_TRANSACTIONS } from "@/graphql/queries/fetchWalletTransactions.ts";
+import { getOrgIdFromClaims } from "@/utils/claims.ts";
 
 const Revenue: React.FC = () => {
   const [activeTabRevenue, setActiveTabRevenue] = useState<
@@ -17,6 +18,7 @@ const Revenue: React.FC = () => {
   const [activeTabTransactions, setActiveTabTransactions] = useState<
     "This Month" | "Last Month"
   >("This Month");
+  const [orgId, setOrgId] = useState<string>("");
   const { openModal } = ModalStore();
 
   const now = new Date();
@@ -49,16 +51,28 @@ const Revenue: React.FC = () => {
     [activeTabTransactions]
   );
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const id = await getOrgIdFromClaims();
+        setOrgId(id);
+      } catch (err) {
+        console.error(err as Error);
+      }
+    })();
+  }, []);
+
   const {
     data: revenueData,
     loading: revenueLoading,
     error: revenueError,
   } = useQuery(FETCH_REVENUE_BY_ORG_ID, {
     variables: {
-      orgId: "bbf0dda2-1c0b-4193-9ca0-0f4b45a8f8d0",
+      orgId,
       start,
       end,
     },
+    skip: !orgId
   });
 
   const {
@@ -73,10 +87,10 @@ const Revenue: React.FC = () => {
   const {
     data: transactionsData,
     loading: transactionsLoading,
-    error: transactionsError
+    error: transactionsError,
   } = useQuery(FETCH_WALLET_TRANSACTIONS, {
     variables: transactionsDateVars,
-    fetchPolicy: "network-only"
+    fetchPolicy: "network-only",
   });
 
   if (orgLoading || transactionsLoading) return <p>Loading...</p>;
@@ -164,7 +178,7 @@ const Revenue: React.FC = () => {
           ))}
         </div>
         <div className="w-full mt-2">
-          <Table2 transactions={transactionsData.wallet_transactions}  />
+          <Table2 transactions={transactionsData.wallet_transactions} />
         </div>
         <div className="flex w-full justify-end mt-2">
           <button className="bg-btn-primary px-4 py-1.5 text-sm font-medium rounded-full">

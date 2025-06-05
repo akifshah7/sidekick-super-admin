@@ -2,7 +2,7 @@ import React from "react";
 import AssignedScootersTable from "./AssignedScootersTable";
 import modalStore from "@/globalStore/modalStore";
 import AssignCreditsModal from "./AssignCreditsModal";
-import RemoveInstitutionModal from "./removeInstitutionModal";
+import RemoveInstitutionModal from "./RemoveInstitutionModal";
 
 type Props = {
   data: any;

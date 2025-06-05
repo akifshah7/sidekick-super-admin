@@ -5,7 +5,7 @@ export const FETCH_ACTIVE_ORGANIZATIONS = gql`
     organizations {
       id
       name
-      wallet {
+      wallets {
         balance
         wallet_transactions {
           amount
