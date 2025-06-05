@@ -6,7 +6,6 @@ import { FETCH_ACTIVE_ORGANIZATIONS_BY_MONTH } from "@/graphql/queries/fetchActi
 import { getDatesForActiveTab } from "@/utils/tabsHelper.ts";
 import ActiveInstitutionsTable from "./components/ActiveInstitutionsTable.tsx";
 import RemoveInstitutionModal from "./components/RemoveInstitutionModal.tsx";
-// import RemoveInstitutionModal from "./components/removeInstitutionModal.tsx";
 
 const Users: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"This Month" | "Last Month">(
